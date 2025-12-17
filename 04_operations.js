@@ -85,6 +85,17 @@ console.log(3 >= 2); // true
 console.log(3 <= 2); // false
 console.log(3 == 2); // false
 console.log(3 != 2); // true
+console.log(null == undefined); // true
+console.log(null === undefined); // false
+console.log(null> 0 ); // true
+console.log(null>= 0 ); // true
+console.log(null>= 0 ); // true
+console.log(null<= 0 ); // true
+console.log(undefined == 0); // false
+console.log(undefined != 0); // true
+console.log(undefined < 0); // false
+console.log(undefined > 0); // false
+console.log(undefined >= 0); // false
 
 //strict equality and inequality
 console.log(3 === "3"); // false
