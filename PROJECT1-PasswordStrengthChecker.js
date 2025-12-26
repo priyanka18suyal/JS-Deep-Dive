@@ -16,44 +16,56 @@
 // loops
 // Step 1: Define the logic
 
-function checkPassword(pass){
-    if(pass.length < 6){
-        return "Weak Password";
+function checkPassword(pass) {
+    let error = [];
+    if (pass.length < 6) {
+        error.push("Weak Password");
     }
     let hasNumber = false;
-    for(let i = 0 ;i < 10 ;i++){
-    if(pass[i]>='0' && pass[i]<='10'){
-        hasNumber = true;
-        break;
+
+
+    for (let i = 0; i < pass.length; i++) {
+        if (pass[i] >= '0' && pass[i] <= '10') {
+            hasNumber = true;
+            break;
+        }
+
     }
-    }
-    if(!hasNumber){
-        return "Rejected! Add a numeric value "
+    if (!hasNumber) {
+        error.push("Rejected! Add a numeric value ");
+        // console.log("Medium Password");
     }
 
-    if(!pass.includes("@") && !pass.includes(".")){
-        return "Rejected! Add a Symbolic value"
+    if (!pass.includes("@") && !pass.includes(".")) {
+        error.push("Rejected! Add a  special char ");
+        //  console.log("Medium Password");
     }
 
     let hasUppercase = false;
-    for(let i = 'A' ;i<='Z';i++){
-    if(pass[i]>='A' && pass[i]>='Z' ){
-          let hasUppercase = true;
-          break;
+    for (let i = 0; i < pass.length; i++) {
+        if (pass[i] != pass[i].toLowerCase()) {
+            hasUppercase = true;
+            break;
 
+        }
     }
+    if (!hasUppercase) {
+        error.push("Rejected! Add at least a UpperCase");
+        //  console.log("Medium Password");
     }
-    if(!hasUppercase){
-        return "Rejected! Add at least a UpperCase";
+
+
+    if (error.length === 0) {
+        error.push("Strong password");
+        // console.log("Strong Password");
     }
+    return error;
+
 
 }
-console.log(checkPassword("Priyanka"));
-console.log(checkPassword("123"));            // Should fail length
-console.log(checkPassword("Priyanka123"));    // Should fail symbol
-console.log(checkPassword("priyanka@123"));   // Should pass!
-console.log(checkPassword("hellothere"));
+ console.log("1.",checkPassword("Priyanka"));
 
-
-
-
+ console.log("2.",checkPassword("123"));
+console.log("3.",checkPassword("Priyanka@123"));
+ console.log("4.",checkPassword("priyanka@123"));
+  console.log("5.",checkPassword("hellothere"));
