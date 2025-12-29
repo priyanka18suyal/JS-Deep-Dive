@@ -1,0 +1,102 @@
+<!-- //How to create a new element in DOM using JS
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai or code </title>
+</head>
+
+<body style="background-color: #212121; color: white">
+
+
+</body>
+<script>
+    //create a div element
+    const div = document.createElement('div');
+    //or h1 elemnt
+    // const div = document.createElement('h1'); // <h1></h1>
+    console.log(div); // <div></div>
+    div.className = "main"
+    div.id = "main-id"
+    //div.id = Math.random(); // gives a random id to the div
+    //div.id = Math.random()*10 ; // gives a random id to the  div
+    div.id = Math.round(Math.random() * 10 + 1); // gives a random id to the  but not with 0
+    //math.round() rounds off the decimal value to nearest integer
+    //it gives id from 1 to 10
+
+    //if u wants to select or other attributes use setAttribute method
+    div.setAttribute("title", "chai or code"); //
+    //<div class="main" id="8" title="chai or code"></div>
+    div.style.backgroundColor = "green";
+    div.style.padding = "12px";
+    //div.innerHtML = "Chai or code"; // but this will not work as it is case sensitive
+    //div.innerHTML = "Chai or code"; // correct way but most of the coders dont use it because ?
+    const addText  =document.createTextNode( "Chai or code"); //this is a better way to add text node because
+    div.appendChild(addText);
+     //
+
+   //Now we have created a div element but it is not yet added or attached  to the body of the html
+
+     document.body.appendChild(div); //a new element is added to the body of html
+    console.log(document.body);
+</script>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chai or code </title>
+</head>
+
+<body style="background-color: #212121; color: white">
+
+</body>
+<script>
+    /* NOTES FOR REVISION:
+       1. createElement: Creates an element node in memory but doesn't show on UI.
+       2. id/className: Directly modifies the property of the object.
+       3. setAttribute: Better for adding any attribute, even custom ones.
+       4. createTextNode: Optimized for performance. It creates text without
+          re-rendering the whole element tree (unlike innerHTML).
+       5. appendChild: Moves the element from memory to the actual Webpage (DOM).
+    */
+
+    //create a div element
+    const div = document.createElement('div');
+    //or h1 elemnt
+    // const div = document.createElement('h1'); // <h1></h1>
+    console.log(div); // <div></div>
+    div.className = "main"
+    div.id = "main-id"
+    //div.id = Math.random(); // gives a random id to the div
+    //div.id = Math.random()*10 ; // gives a random id to the  div
+    div.id = Math.round(Math.random() * 10 + 1); // gives a random id to the  but not with 0
+    //math.round() rounds off the decimal value to nearest integer
+    //it gives id from 1 to 10
+
+    //if u wants to select or other attributes use setAttribute method
+    div.setAttribute("title", "chai or code"); //
+    //<div class="main" id="8" title="chai or code"></div>
+    div.style.backgroundColor = "green";
+    div.style.padding = "12px";
+    //div.innerHtML = "Chai or code"; // but this will not work as it is case sensitive
+    //div.innerHTML = "Chai or code"; // correct way but most of the coders dont use it because ?
+
+    // NOTE: Coders prefer createTextNode because innerHTML has security risks (XSS)
+    // and is slower as it triggers a full browser re-parse.
+    const addText  =document.createTextNode( "Chai or code"); //this is a better way to add text node because
+    div.appendChild(addText);
+    //
+
+   //Now we have created a div element but it is not yet added or attached  to the body of the html
+
+    document.body.appendChild(div); //a new element is added to the body of html
+    console.log(document.body);
+</script>
+
+</html>
