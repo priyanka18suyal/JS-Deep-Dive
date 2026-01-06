@@ -1,0 +1,313 @@
+// /**
+//  * DOM Manipulation Notes
+//  * Focus: Selecting, Attributes, Styles, and Content
+//  */
+
+// // 1. The Global Window Object
+// // console.log(window);
+// // 'window' is the global object for the browser. It contains everything:
+// // the document, location, history, and browser-specific functions.
+
+// // 2. Selecting an Element
+// const title = document.getElementById("title");
+
+// // 3. Why 'className' and not 'class'?
+// // In JavaScript, 'class' is a reserved keyword (used to create classes/blueprints).
+// // To avoid conflict, the DOM uses 'className' to refer to the HTML class attribute.
+// console.log(title.className); // Returns the class string (e.g., 'heading')
+
+// // 4. Getting and Setting Attributes
+// // .getAttribute('attr') returns the value of any attribute.
+// console.log(title.getAttribute("id")); // 'title'
+// console.log(title.getAttribute("class")); // 'test' (or whatever is currently set)
+
+// // .setAttribute('name', 'value') overwrites the existing attribute.
+// title.setAttribute("class", "test-new"); // This replaces 'heading' with 'test-new'
+
+// // 5. Manipulating Styles
+// // Styles applied via .style are added as "inline styles" in the HTML.
+// title.style.backgroundColor = "green";
+// title.style.padding = "15px";
+// title.style.borderRadius = "15px";
+
+// /**
+//  * 6. Accessing Content: The Differences
+//  * Suppose your HTML is:
+//  * <h1 id="title">DOM Learning <span style="display: none;">test text</span></h1>
+//  */
+
+// // A. .innerText
+// // Only shows the "rendered" text. If something is hidden with CSS (display: none),
+// // .innerText will NOT show it. It mimics what the user actually sees.
+// console.log(title.innerText); // Output: "DOM Learning"
+
+// // B. .textContent
+// // Shows all text contained in the element, even if it is hidden by CSS.
+// // It is slightly faster than innerText because it doesn't care about layout.
+// console.log(title.textContent); // Output: "DOM Learning test text"
+
+// // C. .innerHTML
+// // Returns the full HTML structure inside the element, including tags like <span> or <b>.
+// console.log(title.innerHTML); // Output: "DOM Learning <span style="...">test text</span>"
+
+// //Query selector
+// x;
+// document.getElementsByClassName("heading"); // Purpose: Finds all elements with class 'heading' | Output: HTMLCollection [h1#title.heading]
+
+// document.querySelector("h1"); // Purpose: Finds the first <h1> tag | Output: <h1 id="title" class="heading">...</h1>
+
+// document.querySelector("h2"); // Purpose: Finds the first <h2> tag | Output: <h2>Lorem ipsum...</h2>
+
+// document.querySelector("#title"); // Purpose: Finds element by ID 'title' | Output: <h1 id="title" class="heading">...</h1>
+
+// document.querySelector(".heading"); // Purpose: Finds first element with class 'heading' | Output: <h1 id="title" class="heading">...</h1>
+
+// document.querySelector("input"); // Purpose: Finds the first <input> tag | Output: <input type="password"...>
+
+// const myUrl = document.querySelector("ul"); // Purpose: Stores the <ul> element in a variable | Output: undefined (variable assignment)
+
+// const turnGreen = myUrl.querySelector("li"); // Purpose: Finds the first <li> inside that <ul> | Output: undefined (variable assignment)
+
+// turnGreen.style.backgroundColor = "green"; // Purpose: Changes the <li> background to green | Output: "green"
+
+// turnGreen.style.padding = "10px"; // Purpose: Adds 10px padding to the <li> | Output: "10px"
+
+// turnGreen.innerText = "five"; // Purpose: Changes the <li> text to "five" | Output: "five"
+
+// /**
+//  * Advanced Element Selection with querySelector
+//  * Focus: Attribute Selectors, Pseudo-Selectors, Nested Selection, and Dynamic Styling
+//  */
+// // 1. SELECTING BY ATTRIBUTE
+// document.querySelector('input[type="password"]');
+// // Finds the first input element where the type is 'password'
+
+// // 2. CSS PSEUDO-SELECTORS
+// document.querySelector("p:first-child");
+// // Returns 'null' because the <p> in your HTML is NOT the first child of its parent (the <h1> and <h2> come first)
+
+// // 3. SELECTING LISTS
+// document.querySelector("ul");
+// // Finds the first <ul> (unordered list) on the page
+
+// document.querySelector("li");
+// // Finds the first <li> (list item) on the entire page
+
+// // 4. HANDLING SYNTAX ERRORS
+// // consy myUrl = document.querySelector('ul');
+// // Error: 'consy' is not a keyword. JavaScript throws an 'Unexpected identifier' error.
+
+// const myUrl = document.querySelector("ul");
+// // Correctly stores the <ul> element in a variable named 'myUrl'
+
+// // 5. NESTED SELECTION (Searching inside an element)
+// myUrl.querySelector("li");
+// // Instead of searching the whole document, this only searches INSIDE the <ul> for an <li>
+
+// const turnGreen = myUrl.querySelector("li");
+// // Stores that specific first list item into a variable for styling
+
+// // 6. DYNAMIC STYLING
+// turnGreen.style.backgroundColor = "green";
+// // Changes the background color of that specific <li> to green
+
+// turnGreen.style.backgroundColor = "10px";
+// // This line fails silently! '10px' is not a valid color, so the background won't change.
+
+// turnGreen.style.backgroundColor = "20px";
+// // This also fails because '20px' is a measurement, not a color value.
+
+// turnGreen.style.padding = "10px";
+// // Correct usage: Padding requires a measurement like '10px', so the spacing increases.
+
+// // 7. UPDATING CONTENT
+// console.log(turnGreen.innerText);
+// // Reads the current visible text of the <li> (which was 'one')
+
+// turnGreen.innerText = "five";
+// // Replaces the text 'one' with 'five' on the actual webpage
+
+// 1. The Common Mistakes (Why they failed)JavaScript// ATTEMPT 1: Passing multiple strings
+// document.querySelector('li','li','li')
+// // Output: returns only the 1st <li>
+// // WHY: querySelector only accepts ONE selector string. It ignores the rest.
+
+// // ATTEMPT 2: Missing quotes
+// document.querySelector(li,li,li)
+// // Error: Uncaught ReferenceError: li is not defined
+// // WHY: Without quotes, JS thinks 'li' is a variable.
+// // Since you didn't create a variable named li, it crashes.
+// 2. The NodeList (Result of querySelectorAll)When you ran const tempList = document.querySelectorAll('li'), you got a NodeList.Internal Structure (as seen in your console):JavaScripttempList
+// // NodeList(3) [li, li, li]
+// // 0: li
+// // 1: li
+// // 2: li
+// // length: 3
+
+// [[Prototype]]: NodeList
+//   entries: ƒ entries()
+//   forEach: ƒ forEach()    // <--- You CAN use this!
+//   item: ƒ item()
+//   keys: ƒ keys()
+//   values: ƒ values()
+//   constructor: ƒ NodeList()
+// Deep Note: Notice that NodeList has a .forEach() method, but it does not have .map(), .filter(), or .reduce(). This is why we call it an "Array-like" object and not a "Pure Array."3. The Pure Array (myArr)When you defined const myArr = [1, 2, 3], you created a standard JavaScript Array.Internal Structure Comparison:JavaScriptmyArr
+// // [1, 2, 3]
+// // 0: 1
+// // 1: 2
+// // 2: 3
+// // length: 3
+
+// [[Prototype]]: Array      // <--- Different Prototype!
+//   concat: ƒ concat()
+//   filter: ƒ filter()     // <--- Available here
+//   map: ƒ map()           // <--- Available here
+//   pop: ƒ pop()
+//   push: ƒ push()
+//   reverse: ƒ reverse()
+//   // ... and many more
+// Deep Note: The Array prototype is much "heavier." It contains powerful transformation methods like .map() that allow you to change data and return a new array.Summary Table for your NotesFeaturetempList (NodeList)myArr (Pure Array)PrototypeNodeListArrayAccess by IndexYes (e.g., tempList[0])Yes (e.g., myArr[0]).lengthYesYes.forEach()YesYes.map() / .filter()❌ No✅ YesWhy this matters in DOM Manipulation:If you want to use .map() to get an array of all the text inside your li elements, you must convert the NodeList first:JavaScript// Conversion for 'pure' array power:
+// const pureArray = Array.from(tempList);
+
+// // Now you can use map:
+// const texts = pureArray.map(item => item.innerText);
+
+
+
+const tempList = document.querySelectorAll('li')
+// Output: NodeList(3) [li, li, li]
+/* EXPLANATION: This creates a NodeList (a collection of elements).
+   Think of it as a box containing 3 separate <li> objects. */
+
+tempList.style.color='green'
+// ❌ VM1864:1 Uncaught TypeError: Cannot set properties of undefined (setting 'color')
+/* DEEP EXPLANATION:
+   The 'tempList' itself is a NodeList object.
+   A NodeList does NOT have a '.style' property.
+   Only individual Element objects (like <li>) have the '.style' property.
+   JS looks for 'tempList.style', finds nothing (undefined),
+   and then crashes when you try to set '.color' on that 'undefined'. */
+
+tempList[0].style.color='green'
+// 'green'
+/* EXPLANATION: By using [0], you are reaching INSIDE the box
+   to grab the FIRST actual <li> element.
+   Individual elements HAVE a .style property, so this works. */
+
+tempList[1].style.color='yellow'
+// 'yellow'
+/* EXPLANATION: Grabbing the SECOND <li> element. */
+
+tempList[2].style.color='blue'
+// 'blue'
+/* EXPLANATION: Grabbing the THIRD <li> element. */
+
+//look its not like array but it has properties that matches with it
+
+
+1. The querySelector PitfallsJavaScript// ATTEMPT 1: Passing multiple selectors
+document.querySelector('li','li','li')
+/* // EXPLANATION: querySelector only accepts ONE string.
+   It returns only the FIRST <li> it finds. Additional arguments are ignored. */
+
+// ATTEMPT 2: Missing quotes (Variable Error)
+document.querySelector(li,li,li)
+// ❌ Uncaught ReferenceError: li is not defined
+/* // EXPLANATION: Without quotes, JS thinks 'li' is a variable name.
+   Since no variable 'li' exists, it throws a ReferenceError. */
+2. NodeList (from querySelectorAll)JavaScriptconst tempList = document.querySelectorAll('li')
+// Output: NodeList(3) [li, li, li]
+
+// ERROR: Styling the "Box"
+tempList.style.color='green'
+// ❌ Uncaught TypeError: Cannot set properties of undefined (setting 'color')
+/* // EXPLANATION: 'tempList' is the NodeList (the container).
+   The container doesn't have a .style property; only the items inside do. */
+
+// SUCCESS: Styling by Index
+tempList[0].style.color='green'
+tempList[1].style.color='yellow'
+tempList[2].style.color='blue'
+/* // EXPLANATION: Accessing the individual elements via index [0, 1, 2]
+   allows you to reach the actual <li> element which has the .style property. */
+3. NodeList Loops and PrototypeJavaScript// SUCCESS: forEach on NodeList
+tempList.forEach(function (l){
+    l.style.backgroundColor = 'green'
+})
+/* // EXPLANATION: Modern JS allows .forEach directly on a NodeList.
+   Inside the loop, 'l' is the individual <li> element. */
+
+// ERROR: Double Indexing inside loop
+tempList.forEach(function (l){
+    l[0].style.backgroundColor = 'blue'
+})
+// ❌ Uncaught TypeError: Cannot read properties of undefined (reading 'style')
+/* // EXPLANATION: Inside this loop, 'l' is already a single <li> element.
+   Elements are not arrays, so l[0] results in 'undefined'.
+   You cannot apply .style to undefined. */
+
+/* // PROTOTYPE NOTE:
+   If you check [[Prototype]] of tempList, you see:
+   entries(), forEach(), item(), keys(), values().
+   It DOES NOT have .map() or .filter(). */
+4. HTMLCollection vs. NodeListJavaScriptconst tempClassList = document.getElementsByClassName('list-item')
+// Output: HTMLCollection(4) [li.list-item, li.list-item...]
+
+// ERROR: forEach on HTMLCollection
+tempClassList.forEach(function(li){
+    console.log(li)
+})
+// ❌ Uncaught TypeError: tempClassList.forEach is not a function
+/* // DEEP EXPLANATION: Unlike NodeList, an HTMLCollection
+   does NOT have forEach in its prototype. It is even more limited. */
+5. Converting to a Pure ArrayJavaScript// THE SOLUTION: Conversion
+const myConvertedArray = Array.from(tempClassList)
+/* // EXPLANATION: Array.from() converts the HTMLCollection/NodeList
+   into a "Pure Array." */
+
+// PROTOTYPE TRANSFORMATION:
+// From: [[Prototype]]: HTMLCollection (limited)
+// To:   [[Prototype]]: Array (Full power: .map, .filter, .reduce, .sort, etc.)
+
+// SUCCESS: Now forEach works on what was originally an HTMLCollection
+myConvertedArray.forEach(function (li){
+    li.style.color = 'blue'
+})
+// Final Summary TableSelector MethodReturnsPrototypes / MethodsquerySelectorSingle
+// ElementFull access to .stylequerySelectorAllNodeListHas .forEach, lacks
+// .mapgetElementsBy...HTMLCollectionLacks .forEach and .mapArray.from()Pure
+// ArrayHas everything (.map, .filter, etc.)
+
+I. The Selection Phase: Logic and ErrorsIn your console, you discovered that the browser is very strict about how you ask for elements.1. Tag vs. Variable (The ReferenceError)JavaScriptdocument.querySelectorAll(h2)
+// ❌ Uncaught ReferenceError: h2 is not defined
+/* // DEEP EXPLANATION: Without quotes, JS treats h2 as a variable name.
+   Since no variable 'h2' exists, the engine doesn't know what to look for. */
+
+document.querySelectorAll('h2')
+// ✅ NodeList(13) [h2, h2, ...]
+/* // DEEP EXPLANATION: Quotes tell JS: "This is a string."
+   The browser then searches the HTML for any tag named <h2>. */
+2. Classes vs. TagsJavaScriptconst myH2 = document.querySelectorAll('.mw-headline')
+/* // DEEP EXPLANATION: The dot (.) is the CSS selector for a CLASS.
+   This is more specific than a tag. It skips all other spans and
+   only finds those with the 'mw-headline' class. */
+II. Anatomy of the "Lists" (The Prototype Secret)You found three different ways JavaScript stores groups of elements. Understanding their Prototypes tells you what you can and cannot do with them.Object TypeSource.forEach()?.map()?Live or Static?NodeListquerySelectorAll✅ Yes❌ NoStatic (A snapshot)HTMLCollectiongetElementsByClassName❌ No❌ NoLive (Auto-updates)Pure ArrayArray.from()✅ Yes✅ YesStatic (Independent)III. Bulk Manipulation via .forEach()This is where you spent the most time. You learned that you can't style a list, but you can style every item inside a list using a loop.1. The Multi-Property InjectionJavaScriptmyH2.forEach(function(h) {
+    // Styling
+    h.style.color = 'black';
+    h.style.backgroundColor = 'green';
+    h.style.padding = '10px';
+
+    // Content Change
+    h.innerText = "Priyanka";
+})
+Why this works (The Logic Flow):The Loop: .forEach takes the list of 40 elements and starts a cycle.The Iterator (h): On every cycle, the variable h represents one specific <span> from the list.The Property Access: Because h is a single element (not a list), it has a .style and .innerText property.Instant Update: The browser updates the UI for that specific element before moving to the next one.IV. Critical Error Analysis (The "Undefined" Trap)You encountered two specific errors that every developer must understand:Error A: Styling the List directlytempList.style.color = 'green'Reason: tempList is a NodeList. A list of 10 people doesn't have a name; only the individuals in the list have names. Similarly, a NodeList doesn't have a .style; only the <li> objects inside it do.Error B: Double Indexing inside a LooptempList.forEach(function(l) { l[0].style... })Reason: Inside the loop, l is already the single <li> element. Elements are not arrays. If you try to access l[0], it returns undefined. You cannot set properties of undefined.V. Converting for "Pure Array" PowerWhen you hit the limit of HTMLCollection or NodeList (like when you wanted to use .map()), you used the conversion method:JavaScript// STEP 1: Capture the limited collection
+const tempClassList = document.getElementsByClassName('list-item')
+
+// STEP 2: Convert to Pure Array
+const myConvertedArray = Array.from(tempClassList)
+
+// STEP 3: Use any Array method!
+myConvertedArray.map(li => li.innerText)
+/* // DEEP EXPLANATION: Array.from() "borrows" the items and
+   places them into a true Array object, giving you access to 30+
+   advanced methods like .filter(), .reduce(), and .map(). */

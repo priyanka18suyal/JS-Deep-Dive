@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom Learning</title>
+</head>
+
+<body style="background-color: #212121; color: white">
+    <div class="parent">
+
+        <div class="day"> Monday </div>
+        <div class="day"> Tuesday </div>
+        <div class="day"> Wednesday</div>
+        <div class="day"> Thursday </div>
+    </div>
+</body>
+<script>
+    const parent = document.querySelector('.parent')
+    // console.log(parent);
+    //  console.log(parent.children); // HTMLCollection(4) [div.day, div.day, div.day, div.day]
+    //  //like a array property
+    //  console.log(parent.children[1].innerHTML); // Tuesday
+
+    for (let i = 0; i < parent.children.length; i++) {
+        console.log(parent.children[i].innerHTML); // Monday Tuesday Wednesday Thursday
+
+    }
+    //parent.children.style.color = "blue"; // does not work
+    parent.children[1].style.color = "orange";
+    //console.log(parent.children.firstElementChild); // undefined
+    console.log(parent.firstElementChild.innerHTML); // Monday
+    //console.log(parent.LastElementChild.innerHTML); // undefined
+    console.log(parent.lastElementChild.innerHTML); // Thursday
+
+
+    //MOVING FROM CHILD TO PARENT NOW
+
+    const dayOne = document.querySelector('.day')
+    console.log(dayOne); // <div class="day"> Monday </div>
+    console.log(dayOne.parentElement); // <div class="parent">...</div>
+    console.log(dayOne.nextElementSibling);
+    //<div class="day" style="color: orange; --darkreader-inline-color: var(--darkreader-text-ffa500, #dfb567);" data-darkreader-inline-color> Tuesday </div>
+    console.log("NODES", parent.childNodes); //the childNodes include the text nodes as well and gives all the nodes inside the parent
+
+//output:
+    // NODES
+    // - NodeList(9) [text, div.day, text,
+    // div.day, text, div.day, text, div.day,
+    // text]
+    // 0: text
+    // 1: div.day
+    // 2: text
+    // 3: div.day
+    // 4: text
+    // 5: div.day
+    // 6: text
+    // 7: div.day
+    // 8: text
+    // length: 9
+    // [[Prototype]]: NodeList
+</script>
+
+</html>
