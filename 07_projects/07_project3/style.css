@@ -1,0 +1,44 @@
+body {
+  background-image: url('flower.jpeg');
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed; /* Keeps background still while scrolling */
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Centers the box vertically on the screen */
+}
+
+#box {
+  padding: 40px;
+  border-radius: 20px;
+  width: 450px;
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  font-size: x-large;
+  color: rgb(217, 220, 201);
+
+  /* Glassmorphism Effect */
+  background: rgba(255, 255, 255, 0.1);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  /* Outer Soft Shadow */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+#clock {
+  font-size: 40px;
+  color: white;
+  margin-top: 30px;
+  display: block; /* Ensures it stays on its own line */
+
+  /* Inner Box Styling */
+  background-color: #ead40d;
+  border-radius: 12px;
+  padding: 20px 20px;
+
+  /* Soft Glow Shadow using a darker version of the orange color */
+  box-shadow: 0 6px 20px rgba(217, 141, 44, 0.5);
+}

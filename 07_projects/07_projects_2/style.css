@@ -1,0 +1,86 @@
+/* BMI Project Stylesheet */
+
+/* 1. Main container for layout spacing */
+/* Sabse pehle body ya container ko poori height deni hogi */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Horizontally center (Left to Right) */
+  align-items: center; /* Vertically center (Top to Bottom) */
+  min-height: 100vh;
+  /* Poori screen ki height cover karega */
+  cursor: pointer;
+}
+.container {
+  /* padding: 3px; */
+  padding: 10px;
+  width: 300px; /* Makes it take up the full width of the container */
+  border-radius: 5px;
+  border: 2px solid hsl(168, 16%, 6%);
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #d4d8d2;
+}
+.div {
+  padding: 200px;
+  margin: 10px;
+}
+
+/* 2. Inner form container */
+.div1 {
+  padding: 50px;
+  margin: 10px;
+}
+
+/* 3. Span styling (usually for result text) */
+.span {
+  padding: 300px;
+}
+
+/* 4. Button styling - making it look clickable */
+.button {
+  width: 120px; /* Specific width for the button */
+  height: 40px; /* Increased from 10px to be visible/clickable */
+  align-content: center;
+  display: inline-block; /* Allows the element to respect width and height */
+  border: 1px solid rgb(8, 23, 16);
+  cursor: pointer; /* Changes mouse to a 'hand' icon on hover */
+  background-color: #fff;
+  border-radius: 5px; /* Rounds the corners slightly */
+}
+
+/* 5. Dropdown/Select Menu styling */
+select {
+  padding: 10px;
+  width: 200px; /* Makes it take up the full width of the container */
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-top: 10px; /* Adds space above the dropdown */
+}
+
+/* =========================================
+      EXPLANATION FOR YOUR NOTES
+=========================================
+
+LINE-BY-LINE CSS BREAKDOWN:
+
+1. display: inline-block:
+   Standard elements like <span> are 'inline' by default, meaning they ignore width and height.
+   Using 'inline-block' allows the button to have a specific size while staying in line with text.
+
+2. cursor: pointer:
+   This is a UX (User Experience) essential. It tells the user the element is interactive
+   by changing the arrow to a hand icon.
+
+3. padding vs margin:
+   - Padding is the space INSIDE the border (pushes content away from the edge).
+   - Margin is the space OUTSIDE the border (pushes other elements away from the box).
+
+4. border-radius:
+   Used to soften the look of inputs and buttons by rounding the sharp corners.
+
+5. width: 100%:
+   Applied to the 'select' tag so that the dropdown expands to fill its parent container
+   (div1), making it look modern and consistent.
+*/

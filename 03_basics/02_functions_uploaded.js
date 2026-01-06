@@ -22,6 +22,7 @@ function handleObject(anyobject) {
 }
 // handleObject(user);
 //direct object passing
+
 handleObject({
   username: "pri",
   price: 2099,

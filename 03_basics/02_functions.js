@@ -5,7 +5,8 @@ function calculateCartPrice(...num1) {
 }
 // console.log(calculateCartPrice(2)); //[2]
 
-// console.log(calculateCartPrice(200,400,499)); //when we have multiple arguments it will return an array of those arguments
+// console.log(calculateCartPrice(200,400,499));
+// //when we have multiple arguments it will return an array of those arguments
 //[ 200, 400, 499 ]
 
 const user = {
