@@ -1,0 +1,145 @@
+/* =========================
+   GENERAL PAGE LAYOUT
+   ========================= */
+
+/* Styles the entire page */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* Clean, readable default font */
+
+    display: flex;
+    /* Turns body into a flex container */
+
+    flex-direction: column;
+    /* Stacks elements vertically (top to bottom) */
+
+    align-items: center;
+    /* Centers all children horizontally */
+
+    padding: 20px;
+    /* Adds spacing from screen edges */
+}
+
+/* =========================
+   GAME LABEL STYLING
+   ========================= */
+
+/* Label above the input field */
+#guess {
+    background-color: rgb(62, 169, 38);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 5px;
+    font-weight: bold;
+
+    display: inline-block;
+    /* Allows padding & margin properly */
+}
+
+/* =========================
+   INPUT FIELD STYLING
+   ========================= */
+
+/* Input where user types the number */
+#guessField {
+    background-color: rgb(207, 190, 169);
+    border: 2px solid #333;
+    padding: 10px;
+    font-size: 1.1rem;
+    width: 200px;
+    border-radius: 5px;
+    outline: none;
+    /* Removes default browser focus outline */
+}
+
+/* =========================
+   SUBMIT BUTTON
+   ========================= */
+
+#subt {
+    background-color: rgb(223, 134, 18);
+    color: white;
+    padding: 15px 30px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: background 0.3s;
+    /* Smooth hover animation */
+}
+
+/* Hover effect for better UX */
+#subt:hover {
+    background-color: rgb(180, 100, 10);
+}
+
+/* =========================
+   RESULT SECTION LAYOUT
+   ========================= */
+
+/* Container holding guesses, remaining count, messages */
+.resultParas {
+    margin-top: 30px;
+    text-align: center;
+
+    display: flex;
+    /* Flexbox added here */
+
+    flex-direction: column;
+    /* Stack result items vertically */
+
+    gap: 10px;
+    /* Clean spacing between result lines */
+}
+
+/* =========================
+   NUMBER DISPLAY BOXES
+   ========================= */
+
+/* Previous guesses & remaining guesses */
+.guesses,
+.lastResult {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #ffffff;
+    background-color: #967878;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-left: 5px;
+}
+
+/* =========================
+   FEEDBACK MESSAGE
+   ========================= */
+
+/* Message shown by JS: Too High / Too Low / Correct / Game Over */
+.lowOrHigh h2 {
+    margin-top: 20px;
+    padding: 15px;
+    font-size: 1.8rem;
+    color: #333;
+    border-radius: 8px;
+}
+
+/* =========================
+   NEW GAME BUTTON (JS CREATED)
+   ========================= */
+
+#newGame {
+    background-color: #161d6f;
+    color: #ffffff;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    border: 2px solid white;
+    display: inline-block;
+    margin-top: 20px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Hover effect */
+#newGame:hover {
+    background-color: #0b0f3d;
+}

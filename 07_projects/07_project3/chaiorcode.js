@@ -12,6 +12,7 @@ setInterval(function () {
     //wi; give erro coz
     clock.innerHTML = date.toDateString();
     clock.innerHTML = date.toLocaleString();
+   // clock.innerHTML = date.toTimeString();
 }, 1000)
 
 /* NOTES ON SETINTERVAL FUNCTIONALITY:
@@ -58,3 +59,18 @@ setInterval(function () {
      - .toLocaleTimeString(): Returns only the time (Hours:Minutes:Seconds).
      - .toLocaleString(): Returns both date and time together.
 */
+
+
+// Practice
+// const clock = document.querySelector('#clock');
+
+
+// setInterval(function(){
+//    let date = new Date();
+
+// // console.log(date.toLocaleDateString);
+// clock.innerHTML = date.toLocaleDateString();
+// clock.innerHTML = date.toLocaleTimeString();
+
+
+// },1000);

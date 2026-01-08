@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- Tells the browser this is an HTML5 document -->
+
+<html lang="en">
+  <!-- Root element of the page, language set to English -->
+
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Ensures proper character encoding (no text breaking) -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes the page responsive on mobile and small screens -->
+
+    <title>Guess the Number</title>
+    <!-- Title shown on the browser tab -->
+
+    <link rel="stylesheet" href="style.css" />
+    <!-- Links the external CSS file for styling -->
+  </head>
+
+  <body style="background-color: rgb(235, 247, 247)">
+    <!-- Body contains everything visible on the page -->
+
+    <div id="wrapper"></div>
+    <!-- Wrapper div (currently unused, can be used later for layout) -->
+
+    <h1>Number guessing game</h1>
+    <!-- Main heading of the game -->
+
+    <p>Try and guess a random number between 1 and 100.</p>
+    <!-- Game instruction -->
+
+    <p>You have 10 attempts to guess the right number.</p>
+    <!-- Shows the total attempts allowed -->
+
+    <br />
+    <!-- Line break for spacing -->
+
+    <form class="form">
+      <!-- Form element to take user input -->
+
+      <label for="guessField" id="guess"> Guess a number </label>
+      <!-- Label connected to input field -->
+
+      <input type="text" id="guessField" />
+      <!-- Input field where user types the guess -->
+
+      <br />
+      <!-- Line break -->
+
+      <input type="submit" id="subt" value="Submit guess" class="guessSubmit" />
+      <!-- Submit button that triggers the game logic -->
+    </form>
+
+    <div class="resultParas">
+      <!-- Section to show game results -->
+
+      <p>
+        Previous Guesses :
+        <span class="guesses"></span>
+      </p>
+      <!-- Displays all previous guesses -->
+
+      <p>
+        Guesses Remaining :
+        <span class="lastResult">10</span>
+      </p>
+      <!-- Shows how many attempts are left -->
+
+      <p class="loworHigh"></p>
+      <!-- Displays messages: Too High / Too Low / Correct / Game Over -->
+    </div>
+  </body>
+
+  <script src="chaiorcode.js"></script>
+  <!-- Links external JavaScript file that contains game logic -->
+</html>
