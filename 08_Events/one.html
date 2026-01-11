@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html events </title>
+</head>
+
+<body style="background-color: rgb(247, 254, 215);">
+    <h2> Amazing image </h2>
+    <div>
+        <ul id="image">
+            <li><img width="200px" id="photoshop" src="IMG-20240811-WA0004.jpg" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="IMG_20250305_223641.jpg" alt="japan"></li>
+
+            <li><img width="200px" id="river" src="IMG_20250305_223358.jpg" alt="river"></li>
+            <!-- <li><img width="200px" id="owl" src="IMG-20240627-WA0021.jpg" alt="" onclick="alert('owl clicked')"></li>  -->
+            <li><img width="200px" id="owl" src="IMG-20240627-WA0021.jpg" alt=""></li>
+
+            //1st approach - not a good way
+            <li><img width="200px" id="prayer" src="IMG-20241027-WA0001.jpg" alt="prayer"></li>
+
+            <li> <a style="color:rgb(1, 5, 8)" href="https://google.com" id="google">Google </a></li>
+
+
+        </ul>
+    </div>
+</body>
+<script>
+    //document.getElementById('owl').onclick = function(){
+    //  alert('owl image clicked');
+    // }
+    //also not a good way -2nd approach
+
+
+
+    // 3rd approach - best approach
+    //so this is the good way when we use a addEventListener as it gives more flexibility and propagation abiltiy
+    //propagation means if we have multiple events on same element then which event to be executed first
+    //it gives us more features to handle events
+    //addEventListener(event, function, useCapture)
+    //event - the event to be listened to
+    //function - the function to be executed when the event is triggered
+    //eventListener also allows us to add multiple event listeners to the same element for the same event type
+    //eventListener also allows us to remove event listeners using removeEventListener method
+    //it is clicked event here with single string argument
+
+    // document.getElementById('owl').addEventListener('click', function () {
+    //     alert('owl image clicked again');
+    // }, false);
+
+    //false means event bubbling - event is propagated from child to parent
+    //true means event capturing - event is propagated from parent to child
+    //by default it is false
+
+
+
+
+
+    //attachEvent is an old way to add event listeners in IE (Internet Explorer)
+    //it is not recommended to use attachEvent as it is not supported in modern browsers
+    //jquery also provides a way to add event listeners using .on() method
+    //
+
+
+    //document.getElementById('owl').addEventListener('click', function (e){ //e is event object
+    //event object contains information about the event that occurred
+
+    // console.log(e); //event object
+
+    //} ,false);
+
+    //type ,timestamp , defaultPrevented ,
+    //target , toElement , srcElement , currentTarget
+    //clientX , clientY , pageX , pageY
+    //screenX , screenY
+    //altKey , ctrlKey , shiftKey , metaKey , keyCode
+
+    //event propagation methods
+    // event bubbling - it is the default way of event propagation
+    // event capturing - it is the opposite of event bubbling
+    // event propagation is the process of how events are handled in the DOM tree
+
+
+    document.getElementById('image').addEventListener('click', function (e) {
+        // console.log("click inside the ul");
+    }, false)
+    //output  will be click inside the ul
+    // if we click on any image inside the ul
+
+    document.getElementById('owl').addEventListener('click', function (e) {
+        // console.log("owl click ");
+    }, false)
+    //output will be owl click
+    // click inside the ul
+    // if we click on owl image
+
+    //because of event bubbling first the event is captured by the innermost element
+    //then it is propagated to the outer elements like inner element(image) to li to outer element(ul)
+    //default value is false
+    //event capturing is not used commonly
+    //event capturing is used when we want to capture the event at the outermost element first
+
+
+    //stop propagation
+    document.getElementById('river').addEventListener('click', function (e) {
+        e.stopPropagation(); //stops the event from propagating to parent elements
+        //console.log("river click ");
+    }, false)
+    //if we click on river image only river click will be printed
+    //click inside the ul will not be printed because of stopPropagation method
+    //we need this method when we want to stop the event from propagating to other elements
+    //our element will not get bubbled up to parent elements or outer elements
+    //output will be only river click
+
+
+    document.getElementById('google').addEventListener('click', function (e) {
+        e.preventDefault(); //prevents the default action of the event
+        e.stopPropagation(); // stops the event from propagating to parent elements
+        //then output will be only "google clicked"
+        //console.log("google clicked");
+    }, false)
+
+
+    //output without stopPropagation
+    //google clicked
+    //click inside the ul
+
+    //if we click on google link
+    //it will not redirect to google.com because of preventDefault method
+    //otherwise we will jump to google.com
+    //use preventDefault method that wil prevent in event bubbling too
+
+    //lets do a project based on events
+    //now whenever we click on any image it should be disappeared from the screen
+
+    document.querySelector('#image').addEventListener('click', function (e) {
+        // console.log(e); //event object
+        // console.log(e.target); //target element that was clicked and e.target is the element that triggered the event
+        //which means that if we click on any image inside the ul then that image will be the target element
+        //and the output will be when we click on any image is <img> element
+        // },false)
+
+        // console.log(e.target.parentNode); //parent element of) //this will give us the li element
+        console.log(e.target.tagName); //parent element of) //this will give us the li element
+
+        if (e.target.tagName === 'IMG') {
+            console.log(e.target.id);
+            let removeIt = e.target.parentNode; //li element
+            removeIt.remove();
+
+
+        }
+        // let removeIt = e.target.parentNode; //li element
+        //  removeIt.remove(); //removes the li element from the DOM
+        //so when we click on any image the li element will be removed from the DOM
+
+        // alternate way to remove the element
+        //as it gives ul as parent node
+        //removeIt.parentNode.removeChild(removeIt); //removes the li element from the DOM
+        //but there is aproblem when we click near the google.com link in the page then the entire ul will be removed or u can say entire image list will be removed
+        //because google link is also inside the ul
+        //so we need to check if the target element is an image or not
+        //it is done by checking the tag name of the target element
+        //if it is img then only we will remove the li element with if condition
+        //place this code indide the function
+
+    }, false)
+
+</script>
+
+</html>
