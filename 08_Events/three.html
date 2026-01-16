@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>chai or Javascript</h1>
+    <button id="start">Start</button>
+
+    <button id="stop">Stop</button>
+</body>
+<script>
+//setInterval is used to execute a function repeatedly after a specified number of milliseconds
+// setInterval(function(){
+//     console.log("priyanka");
+// },1000);  //consatntly prints priyanka every second
+
+// setInterval(function(){
+//     console.log("priyanka",Date.now()); //prints priyanka with timestamp every second
+// },1000);
+
+const sayDate = function(str){
+    console.log(str,Date.now());
+
+}
+// setInterval(sayDate,1000,"hi")
+
+//to stop the setInterval we use clearInterval and it takes refrence so hold this in a variable
+const intervalId = setInterval(sayDate,1000,"hello");
+clearInterval(intervalId); //stops the interval immediately so nothing is printed
+
+</script>
+</html>
